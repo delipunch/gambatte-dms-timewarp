@@ -38,7 +38,7 @@ Rtc::Rtc()
 }
 
 void Rtc::doLatch() {
-	std::time_t tmp = (dataDh_ & 0x40 ? haltTime_ : std::time(0)) - baseTime_;
+	std::time_t tmp = ((dataDh_ & 0x40 ? haltTime_ : std::time(0)) - baseTime_) * 24;
 
 	while (tmp > 0x1FF * 86400) {
 		baseTime_ += 0x1FF * 86400;
